@@ -60,7 +60,7 @@ while running:
         hit_y = True
 
     # Отрисовка экрана
-    screen.fill(green)
+    screen.fill('black')
     pygame.draw.circle(screen, circle_color, (circle_x, circle_y), circle_radius)
 
     pygame.display.flip()
