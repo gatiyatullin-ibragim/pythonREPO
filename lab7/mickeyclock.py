@@ -20,7 +20,7 @@ clock60 = dict(zip(range(60), range(0, 360, 6)))
 
 # Загрузка изображений
 bg = pygame.image.load("mickey-mouse-seeklogo.png")
-hour_hand = pygame.image.load("прямая рука.png")
+hour_hand = pygame.image.load("прямаярука.png")
 
 
 # Масштабирование
