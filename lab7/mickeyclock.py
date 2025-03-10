@@ -56,7 +56,7 @@ while True:
             sys.exit()
 
     # Очистка экрана
-    surface.fill(pygame.Color('white'))
+    surface.fill(pygame.Color('yellow'))
 
     # Центр часов
     clock_center = (H_WIDTH, H_HEIGHT)
@@ -92,12 +92,12 @@ while True:
 
     
     # Рисуем стрелки
-    blit_hand(surface, hour_hand, clock_center, hour_angle, (0, -65))  # Pivot point for hour hand
-    blit_hand(surface, minute_hand, clock_center, minute_angle, (0, -80))  # Pivot point for minute hand
-    blit_hand(surface, second_hand, clock_center, second_angle, (0, -105))  # Pivot point for second hand
+    blit_hand(surface, hour_hand, clock_center, hour_angle, (0, -65))
+    blit_hand(surface, minute_hand, clock_center, minute_angle, (0, -80)) 
+    blit_hand(surface, second_hand, clock_center, second_angle, (0, -105))
 
     # Отрисовка цифрового времени
-    time_render = font.render(f'{t:%H:%M:%S}', True, pygame.Color('black'), pygame.Color('white'))
+    time_render = font.render(f'{t:%H:%M:%S}', True, pygame.Color('black'), pygame.Color('yellow'))
     surface.blit(time_render, (0, 0))
 
     pygame.display.flip()
