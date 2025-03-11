@@ -1,7 +1,7 @@
 import pygame
 import random
 
-pygame.inti()
+pygame.init()
 
 #окно
 WIDTH, HEIGHT = 500, 500
