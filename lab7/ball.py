@@ -1,9 +1,9 @@
 import pygame
 import random
 
-pygame.init()
+pygame.inti()
 
-# Настройки окна
+#окно
 WIDTH, HEIGHT = 500, 500
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Движение круга")
@@ -13,7 +13,7 @@ white = ((255,255,255))
 blue = (0, 0, 255)
 green = (0, 255, 0)
 
-# Параметры круга
+#круг
 circle_x = WIDTH // 2
 circle_y = HEIGHT // 2
 circle_radius = 50
@@ -24,18 +24,16 @@ def random_color():
     return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
 
-
-
 running = True
 while running:
     pygame.time.delay(30)
 
-    # Обрабатываем события
+    #события
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    # Управление клавишами
+    #клавишами
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_UP] and circle_y - circle_radius > 0:
@@ -51,7 +49,7 @@ while running:
         circle_x += speed
         hit_x = False
 
-    # Проверка на столкновение с границами
+    #столкновение с границами
     if (circle_x - circle_radius <= 0 or circle_x + circle_radius >= WIDTH) and not hit_x:
         circle_color = random_color()
         hit_x = True
@@ -59,7 +57,7 @@ while running:
         circle_color = random_color()
         hit_y = True
 
-    # Отрисовка экрана
+    #Отрисовка экрана
     screen.fill('black')
     pygame.draw.circle(screen, circle_color, (circle_x, circle_y), circle_radius)
 
