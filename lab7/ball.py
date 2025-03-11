@@ -9,7 +9,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Движение круга")
 
 # Цвета
-white = (255, 255, 255)
+white = ((255,255,255))
 blue = (0, 0, 255)
 green = (0, 255, 0)
 
