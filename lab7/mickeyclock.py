@@ -43,7 +43,7 @@ def get_clock_pos(clock_dict, clock_hand, key):
 
 
 def blit_hand(surf, image, center, angle, pivot):
-    """Поворачивает стрелку и центрирует её относительно `center`"""
+    """Поворачивает стрелку и центрирует её относительно центра"""
     rotated_image = pygame.transform.rotate(image, -angle)
     pivot_offset = pygame.math.Vector2(pivot).rotate(angle)
     rotated_rect = rotated_image.get_rect(center=(center[0] + pivot_offset.x, center[1] + pivot_offset.y))
