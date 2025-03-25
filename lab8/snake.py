@@ -13,43 +13,41 @@ bg.fill(pygame.Color('white'))
 
 snake_speed = 15
 snake_pos = [100, 50]
-
 snake_body = [[100, 50], [90, 50], [80, 50], [70, 50]]
 
 fruit_pos = [random.randrange(1, (WIDTH // 10)) * 10,
              random.randrange(1, (HEIGHT // 10)) * 10]
-
 fruit_spawn = True
 
 direction = 'RIGHT'
-change_to = direction
-
 score = 0
+level = 1
+level_up = False  # Флаг для уровня
 
-
-def show_score(choice, color, font, size):
-    score_font = pygame.font.SysFont(font, size)
-    score_surface = score_font.render(f'Score: {score}', True, color)
-    score_rect = score_surface.get_rect(topleft=(10, 10))
-    bg.blit(score_surface, score_rect)
-
+def show_text(text, color, font, size, x, y):
+    text_font = pygame.font.SysFont(font, size)
+    text_surface = text_font.render(text, True, color)
+    text_rect = text_surface.get_rect(topleft=(x, y))
+    bg.blit(text_surface, text_rect)
 
 def game_over():
     my_font = pygame.font.SysFont('times new roman', 50)
     game_over_surface = my_font.render(f'Score: {score}', True, 'red')
+    game_over_surface_2 = my_font.render(f'Highest Level: {level}', True, 'red')
+
     game_over_rect = game_over_surface.get_rect(center=(WIDTH / 2, HEIGHT / 2))
+    game_over_rect_2 = game_over_surface_2.get_rect(center=(WIDTH / 2, HEIGHT / 2 + 50))
 
     bg.fill('black')
     bg.blit(game_over_surface, game_over_rect)
+    bg.blit(game_over_surface_2, game_over_rect_2)
     pygame.display.update()
+    pygame.time.delay(2000)  # Вместо time.sleep()
 
-    time.sleep(2)
     pygame.quit()
     sys.exit()
 
-
 while True:
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -57,15 +55,13 @@ while True:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP and direction != 'DOWN':
-                change_to = 'UP'
+                direction = 'UP'
             if event.key == pygame.K_DOWN and direction != 'UP':
-                change_to = 'DOWN'
+                direction = 'DOWN'
             if event.key == pygame.K_LEFT and direction != 'RIGHT':
-                change_to = 'LEFT'
+                direction = 'LEFT'
             if event.key == pygame.K_RIGHT and direction != 'LEFT':
-                change_to = 'RIGHT'
-
-    direction = change_to
+                direction = 'RIGHT'
 
     if direction == 'UP':
         snake_pos[1] -= 10
@@ -78,11 +74,18 @@ while True:
 
     snake_body.insert(0, list(snake_pos))
 
-    if snake_pos[0] == fruit_pos[0] and snake_pos[1] == fruit_pos[1]:
-        score += 10
+    if snake_pos == fruit_pos:
+        score += 1
         fruit_spawn = False
     else:
         snake_body.pop()
+
+    if score >= 5 * level:
+        level += 1
+        snake_speed += 2  # Увеличиваем скорость
+
+    if score < 5:
+        level_up = False
 
     if not fruit_spawn:
         fruit_pos = [random.randrange(1, (WIDTH // 10)) * 10,
@@ -100,10 +103,11 @@ while True:
         game_over()
 
     for block in snake_body[1:]:
-        if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
+        if snake_pos == block:
             game_over()
 
-    show_score(1, 'black', 'Arial', 20)
+    show_text(f'Score: {score}', 'black', 'Arial', 20, 10, 10)
+    show_text(f'Level: {level}', 'black', 'Arial', 20, WIDTH - 100, 10)
 
     pygame.display.update()
     FPS.tick(snake_speed)
