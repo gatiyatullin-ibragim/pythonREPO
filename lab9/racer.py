@@ -33,7 +33,7 @@ class Coin(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, WIDTH - 40), 0)
-        self.weight = random.randint(1, 10)  # Вес монетки (1-10)
+        self.weight = random.randint(1, 5)  # Вес монетки (1-5)
 
     def move(self):
         self.rect.move_ip(0, coin_speed)
