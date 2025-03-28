@@ -15,15 +15,7 @@ def main():
     start_pos = None         # Начальная позиция для фигур
 
     # Палитра цветов
-    colors = {
-        "black": (0, 0, 0),
-        "red": (255, 0, 0),
-        "green": (0, 255, 0),
-        "blue": (0, 0, 255),
-        "yellow": (255, 255, 0),
-        "white": (255, 255, 255)  # Для ластика
-    }
-
+    
     running = True
     while running:
         for event in pygame.event.get():
@@ -41,19 +33,19 @@ def main():
                     mode = "circle"
                 elif event.key == pygame.K_e:
                     mode = "eraser"
-                    color = colors["white"]
+                    color = 'white'
 
                 # Смена цвета
                 elif event.key == pygame.K_r:
-                    color = colors["red"]
+                    color = 'red'
                 elif event.key == pygame.K_g:
-                    color = colors["green"]
+                    color = 'green'
                 elif event.key == pygame.K_b:
-                    color = colors["blue"]
+                    color = 'blue'
                 elif event.key == pygame.K_y:
-                    color = colors["yellow"]
+                    color = 'yellow'
                 elif event.key == pygame.K_k:
-                    color = colors["black"]
+                    color = 'black'
 
                 # Изменение толщины
                 elif event.key == pygame.K_PLUS:
@@ -93,11 +85,11 @@ def main():
 
         # --- Отрисовка палитры ---
         y_palette = 550
-        pygame.draw.rect(screen, colors["black"], (10, y_palette, 30, 30))
-        pygame.draw.rect(screen, colors["red"], (50, y_palette, 30, 30))
-        pygame.draw.rect(screen, colors["green"], (90, y_palette, 30, 30))
-        pygame.draw.rect(screen, colors["blue"], (130, y_palette, 30, 30))
-        pygame.draw.rect(screen, colors["yellow"], (170, y_palette, 30, 30))
+        pygame.draw.rect(screen, 'black', (10, y_palette, 30, 30))
+        pygame.draw.rect(screen, 'red', (50, y_palette, 30, 30))
+        pygame.draw.rect(screen, 'green', (90, y_palette, 30, 30))
+        pygame.draw.rect(screen, 'blue', (130, y_palette, 30, 30))
+        pygame.draw.rect(screen, 'yellow', (170, y_palette, 30, 30))
 
         # --- Подпись режима ---
         font = pygame.font.SysFont(None, 24)
